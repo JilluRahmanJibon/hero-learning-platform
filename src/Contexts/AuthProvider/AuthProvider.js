@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
+	GithubAuthProvider,
 	GoogleAuthProvider,
 	onAuthStateChanged,
 	sendEmailVerification,
@@ -21,6 +22,19 @@ const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	// error state
 	const [error, setError] = useState("");
+
+	// continue with Google
+	const googleProvider = new GoogleAuthProvider();
+	const continueWithGoogle = () => {
+		return signInWithPopup(auth, googleProvider);
+	};
+
+	// continue with Github
+	const githubProvider = new GithubAuthProvider();
+	const continueWithGithub = () => {
+		return signInWithPopup(auth, githubProvider);
+	};
+
 	// create user with email and password
 	const createUserWithEmailAndPass = (email, password) => {
 		setLoading(true);
@@ -33,17 +47,9 @@ const AuthProvider = ({ children }) => {
 		});
 	};
 	// log in with email password
-	const logInEmailAndPassword = (email, password) => {
+	const logInWithEmailAndPassword = (email, password) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
-	};
-
-	// continue with google
-	const googleProvider = new GoogleAuthProvider();
-	const continueWithGoogle = () => {
-		signInWithPopup(auth, googleProvider)
-			.then(result => {})
-			.catch(error => {});
 	};
 
 	// user email varification
@@ -59,10 +65,11 @@ const AuthProvider = ({ children }) => {
 	const value = {
 		user,
 		loading,
+		continueWithGoogle,
+		continueWithGithub,
 		createUserWithEmailAndPass,
 		userProfileUpdate,
-		logInEmailAndPassword,
-		continueWithGoogle,
+		logInWithEmailAndPassword,
 		userEmailVairy,
 		userPasswordReset,
 	};
@@ -80,7 +87,7 @@ const AuthProvider = ({ children }) => {
 	return (
 		<div>
 			{loading && (
-				<div className="text-center ">
+				<div className="text-center mr-32 ">
 					<button
 						disabled
 						type="button"
