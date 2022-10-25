@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 const SignUp = () => {
 	const [checkbox, setCheckbox] = useState(true);
 	return (
@@ -17,8 +18,9 @@ const SignUp = () => {
 									<FcGoogle className="text-xl lg:text-2xl" />{" "}
 									<span>Sign up with Google</span>
 								</button>{" "}
-								<button className=" w-full py-2 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
-									github
+								<button className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
+									<FaGithub className="text-xl lg:text-2xl" /> Sign up with
+									Github
 								</button>
 							</div>
 							<div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-400 before:mt-0.5 after:flex-1 after:border-t after:border-gray-400 after:mt-0.5">

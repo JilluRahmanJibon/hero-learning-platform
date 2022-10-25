@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcHome } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
@@ -14,18 +14,28 @@ const Header = () => {
 						className="inline-flex items-center">
 						<FcHome className="text-3xl" />
 						<span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-							Hero
+							Hero platform
 						</span>
 					</a>
 					<ul className="flex items-center hidden space-x-8 lg:flex">
 						<li>
-							<a
-								href="/"
-								aria-label="Our product"
-								title="Our product"
+							<Link
+								to="/courses"
+								aria-label="Our Courses"
+								title="Our Courses"
 								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
 								Courses
-							</a>
+							</Link>
+						</li>
+
+						<li>
+							<NavLink
+								to="/faqs"
+								aria-label="FAQs"
+								title="FAQs"
+								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-deep-purple-accent-400">
+								FAQ
+							</NavLink>
 						</li>
 						<li>
 							<a
@@ -35,15 +45,6 @@ const Header = () => {
 								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
 								Features
 							</a>
-						</li>
-						<li>
-							<NavLink
-								to="/faqs"
-								aria-label="FAQs"
-								title="FAQs"
-								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-deep-purple-accent-400">
-								FAQ
-							</NavLink>
 						</li>
 						<li>
 							<NavLink
@@ -57,13 +58,13 @@ const Header = () => {
 					</ul>
 					<ul className="flex items-center hidden space-x-8 lg:flex">
 						<li>
-							<NavLink
+							<Link
 								to="/signup"
-								className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+								className="inline-flex bg-gray-800 hover:bg-gray-700 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
 								aria-label="Sign up"
 								title="Sign up">
 								Sign up
-							</NavLink>
+							</Link>
 						</li>
 					</ul>
 					<div className="lg:hidden">
