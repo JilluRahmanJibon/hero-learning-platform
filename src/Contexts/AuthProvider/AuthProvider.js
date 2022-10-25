@@ -12,6 +12,7 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import app from "../../firebase/Firebase.config";
+import toast from "react-hot-toast";
 
 const auth = getAuth(app);
 export const AuthContext = createContext();
@@ -20,8 +21,6 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	// loading state
 	const [loading, setLoading] = useState(true);
-	// error state
-	const [error, setError] = useState("");
 
 	// continue with Google
 	const googleProvider = new GoogleAuthProvider();
@@ -55,7 +54,12 @@ const AuthProvider = ({ children }) => {
 	// user email varification
 	const userEmailVairy = () => {
 		sendEmailVerification(auth.currentUser)
-			.then(result => {})
+			.then(result => {
+				toast.error("please varify your email", {
+					position: "top-center",
+					duration: 5000,
+				});
+			})
 			.catch(error => {});
 	};
 	// user password reset
@@ -64,7 +68,7 @@ const AuthProvider = ({ children }) => {
 	};
 	const value = {
 		user,
-		loading,
+		setLoading,
 		continueWithGoogle,
 		continueWithGithub,
 		createUserWithEmailAndPass,

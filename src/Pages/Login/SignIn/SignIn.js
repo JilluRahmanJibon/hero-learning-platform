@@ -1,27 +1,37 @@
 import React, { useContext, useState } from "react";
-import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash, FaGithub, FaTimes } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const SignIn = () => {
 	// show password state
 	const [show, setShow] = useState(false);
 	const [showPassword, setShowPassword] = useState("password");
+	// error state
+	const [error, setError] = useState("");
 	const {
 		continueWithGoogle,
 		continueWithGithub,
 		logInWithEmailAndPassword,
-		user,
+		setLoading,
 	} = useContext(AuthContext);
+
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/";
 	const navigate = useNavigate();
 	// sign in with google
 	const signInWithgoogle = () => {
 		continueWithGoogle()
 			.then(result => {
 				const user = result.user;
-				console.log(user);
-				navigate("/");
+
+				navigate(from, { replace: true });
+				toast.success("Successfully sign in", {
+					duration: 3000,
+					position: "top-center",
+				});
 			})
 			.catch(error => {
 				console.error(error);
@@ -32,18 +42,44 @@ const SignIn = () => {
 		continueWithGithub()
 			.then(result => {
 				const user = result.user;
-				console.log(user);
-				navigate("/");
+				navigate(from, { replace: true });
+				toast.success("Successfully sign in", {
+					duration: 3000,
+					position: "top-center",
+				});
 			})
 			.catch(error => {
 				console.error(error);
 			});
+	};
+
+	// sign in with email and password
+	const signInWithEmailAndPassword = e => {
+		e.preventDefault();
+		const form = e.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		logInWithEmailAndPassword(email, password)
+			.then(result => {
+				const user = result.user;
+				navigate(from, { replace: true });
+				toast.success("Successfully sign in", {
+					duration: 3000,
+					position: "top-center",
+				});
+			})
+			.catch(error => {
+				setError(error.message);
+				setLoading(false);
+			});
+		setError("");
 	};
 	return (
 		<div>
 			<section className="bg-gray-50 dark:bg-gray-900">
 				<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 					<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+						{error && <p className="text-center  text-red-400">{error}</p>}
 						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 							<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 								Sign in to your account
@@ -67,7 +103,9 @@ const SignIn = () => {
 									Or
 								</p>
 							</div>
-							<form className="space-y-4 md:space-y-6" action="#">
+							<form
+								className="space-y-4 md:space-y-6"
+								onSubmit={signInWithEmailAndPassword}>
 								<div>
 									<label
 										htmlFor="email"
