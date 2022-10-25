@@ -8,6 +8,7 @@ import Root from "../Pages/Layout/Root";
 import Login from "../Pages/Login/SignIn/SignIn";
 import SignUp from "../Pages/Login/Sign Up/SignUp";
 import TermsAndConditions from "../Pages/Login/Sign Up/TermsAndConditions/TermsAndConditions";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
 	{
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
 			{ path: "/faqs", element: <FAQS /> },
 			{ path: "/blog", element: <Blog /> },
 			{ path: "/aboutUs", element: <About /> },
+			{ path: "profile", element: <Profile /> },
 			{ path: "signin", element: <Login /> },
 			{ path: "/signup", element: <SignUp /> },
 			{ path: "/terms", element: <TermsAndConditions /> },
