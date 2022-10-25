@@ -10,8 +10,8 @@ import {
 	signInWithPopup,
 	updateProfile,
 } from "firebase/auth";
+import app from "../../firebase/Firebase.config";
 
-import app from "../../firebase/Firebase.Config";
 const auth = getAuth(app);
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
