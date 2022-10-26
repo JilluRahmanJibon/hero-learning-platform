@@ -9,12 +9,23 @@ const SignIn = () => {
 	// show password state
 	const [show, setShow] = useState(false);
 	const [showPassword, setShowPassword] = useState("password");
+
+	// user info state
+	const [userInfo, setUserInfo] = useState({
+		email: "",
+		password: "",
+	});
 	// error state
-	const [error, setError] = useState("");
+	const [errors, setErrors] = useState({
+		email: "",
+		password: "",
+		fireError: "",
+	});
 	const {
 		continueWithGoogle,
 		continueWithGithub,
 		logInWithEmailAndPassword,
+		userPasswordReset,
 		setLoading,
 	} = useContext(AuthContext);
 
@@ -56,10 +67,8 @@ const SignIn = () => {
 	// sign in with email and password
 	const signInWithEmailAndPassword = e => {
 		e.preventDefault();
-		const form = e.target;
-		const email = form.email.value;
-		const password = form.password.value;
-		logInWithEmailAndPassword(email, password)
+
+		logInWithEmailAndPassword(userInfo.email, userInfo.password)
 			.then(result => {
 				const user = result.user;
 				navigate(from, { replace: true });
@@ -69,17 +78,56 @@ const SignIn = () => {
 				});
 			})
 			.catch(error => {
-				setError(error.message);
 				setLoading(false);
+				setErrors({ ...errors, fireError: error.message });
 			});
-		setError("");
+		setErrors({ ...errors, fireError: "" });
+	};
+	// handle email on change
+	const handleEmailOnChange = e => {
+		const email = e.target.value;
+		if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+			setErrors({ ...errors, email: "please provide a valid email" });
+			setUserInfo({ ...userInfo, email: "" });
+		} else {
+			setErrors({ ...errors, email: "" });
+			setUserInfo({ ...userInfo, email: email });
+		}
+	};
+	// handle password on change
+	const handlePasswordChange = e => {
+		const password = e.target.value;
+		if (password.length < 6) {
+			setErrors({ ...errors, password: "password must be 6 characters " });
+			setUserInfo({ ...userInfo, password: "" });
+		} else {
+			setErrors({ ...errors, password: "" });
+			setUserInfo({ ...userInfo, password: password });
+		}
+	};
+
+	// forgot password
+	const forgotPassword = () => {
+		userPasswordReset(userInfo.email)
+			.then(result => {
+				toast.success(
+					"Password reset successful , please check your email and new password set now",
+					{
+						position: "top-center",
+						duration: 5000,
+					}
+				);
+			})
+			.catch(error => {});
 	};
 	return (
 		<div>
 			<section className="bg-gray-50 dark:bg-gray-900">
 				<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 					<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-						{error && <p className="text-center  text-red-400">{error}</p>}
+						{errors.fireError && (
+							<p className=" text-center text-red-400">{errors.fireError}</p>
+						)}
 						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 							<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 								Sign in to your account
@@ -113,6 +161,7 @@ const SignIn = () => {
 										Your email
 									</label>
 									<input
+										onChange={handleEmailOnChange}
 										type="email"
 										name="email"
 										id="email"
@@ -120,6 +169,12 @@ const SignIn = () => {
 										placeholder="name@example.com"
 										required
 									/>
+									{errors.email && (
+										<p className="flex items-center gap-1 text-red-400">
+											<FaTimes className="mt-2" />
+											{errors.email}
+										</p>
+									)}
 								</div>
 								<div>
 									<label
@@ -129,6 +184,7 @@ const SignIn = () => {
 									</label>
 									<div className="flex  relative items-center">
 										<input
+											onChange={handlePasswordChange}
 											type={showPassword}
 											name="password"
 											id="password"
@@ -136,6 +192,7 @@ const SignIn = () => {
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											required
 										/>
+
 										<div
 											onClick={() => setShow(!show)}
 											className="absolute right-2">
@@ -152,6 +209,12 @@ const SignIn = () => {
 											)}
 										</div>
 									</div>
+									{errors.password && (
+										<p className="flex items-center gap-1 text-red-400">
+											<FaTimes className="mt-2" />
+											{errors.password}
+										</p>
+									)}
 								</div>
 								<div className="flex justify-between items-center mb-6">
 									<div className="form-group form-check">
@@ -166,7 +229,9 @@ const SignIn = () => {
 											Remember me
 										</label>
 									</div>
-									<Link className="text-red-400">Forgot password?</Link>
+									<Link onClick={forgotPassword} className="text-red-400">
+										Forgot password?
+									</Link>
 								</div>
 
 								<button

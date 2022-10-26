@@ -87,6 +87,7 @@ const SignUp = () => {
 			});
 		setErrors({ ...errors, fireError: "" });
 	};
+	// handle email on change
 	const handleEmailOnChange = e => {
 		const email = e.target.value;
 		if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -97,7 +98,7 @@ const SignUp = () => {
 			setUserInfo({ ...userInfo, email: email });
 		}
 	};
-
+	// handle password on change
 	const handlePasswordChange = e => {
 		const password = e.target.value;
 		if (password.length < 6) {

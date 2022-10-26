@@ -1,17 +1,49 @@
-import React, { useContext, useState } from "react";
-import { FaBars, FaUserAlt } from "react-icons/fa";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { FaBars, FaUserAlt, FaUserCheck } from "react-icons/fa";
 import { FcHome } from "react-icons/fc";
-
-import { Link, NavLink } from "react-router-dom";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const Header = () => {
-	const { user } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const { user, userLogOut } = useContext(AuthContext);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	// profile state
 	const [openProfile, setOpenProfile] = useState(false);
+	const profileRef = useRef();
+	useEffect(() => {
+		let handler = e => {
+			if (!profileRef.current.contains(e.target)) {
+				setOpenProfile(false);
+			} else {
+			}
+		};
+		document.addEventListener("mousedown", handler);
+		return () => {
+			document.removeEventListener("mousedown", handler);
+		};
+	}, []);
 
+	// log out
+	const logOut = () => {
+		userLogOut()
+			.then(() => {
+				toast.success("Log out success", {
+					position: "top-center",
+					duration: 2000,
+				});
+				navigate("/signin");
+			})
+			.catch(error => {
+				// An error happened.
+			});
+	};
 	return (
 		<div className="bg-gray-900">
-			<div className="px-2 py-5 relative mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+			<div
+				ref={profileRef}
+				className="px-2 py-5 relative  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
 				<div className="relative flex items-center justify-between">
 					<Link
 						to="/"
@@ -80,11 +112,11 @@ const Header = () => {
 							<ul className="flex items-center hidden space-x-8 lg:flex">
 								<li>
 									<Link
-										to="/signin"
+										to="/signup"
 										className="inline-flex bg-gray-800 hover:bg-gray-700 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-										aria-label="Sign in"
-										title="Sign in">
-										Sign in
+										aria-label="Sign Up"
+										title="Sign Up">
+										Sign up
 									</Link>
 								</li>
 							</ul>
@@ -179,11 +211,11 @@ const Header = () => {
 												{user?.uid ? undefined : (
 													<li>
 														<Link
-															to="/signin"
+															to="/signup"
 															className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide bg-gray-800 text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-															aria-label="Sign in"
-															title="Sign in">
-															Sign in
+															aria-label="Sign up"
+															title="Sign up">
+															Sign up
 														</Link>
 													</li>
 												)}
@@ -195,41 +227,75 @@ const Header = () => {
 						</div>
 						<Link onClick={() => setOpenProfile(!openProfile)} title="Profile">
 							{user?.uid ? (
-								<img
-									className="w-10 h-10 rounded-full"
-									src={user?.photoURL}
-									alt=""
-								/>
+								<>
+									{user.photoURL ? (
+										<img
+											className="w-10 h-10 rounded-full"
+											src={user?.photoURL}
+											alt=""
+										/>
+									) : (
+										<FaUserCheck className="w-7 h-7 text-gray-500" />
+									)}
+								</>
 							) : (
 								<FaUserAlt className="w-7 h-7 text-gray-500" />
 							)}
 						</Link>
 					</div>
 				</div>
-				{openProfile ? (
-					<div className="absolute  right-10 bg-gray-100 w-56 top-16 rounded-lg ">
-						<div className="flex flex-col items-center  py-2 border-b-2 border-gray-300 justify-center">
-							{user?.uid ? (
-								<img
-									className="w-16 h-16 rounded-full"
-									src={user?.photoURL}
-									alt=""
-								/>
-							) : (
-								<FaUserAlt className="w-7 h-7 text-gray-500" />
-							)}
-							<h1 className="font-bold pt-2">
-								{user?.uid ? user.displayName : "N/A"}
-							</h1>
-							<Link
-								to="/profile"
-								className="bg-fuchsia-400 hover:bg-fuchsia-500 font-semibold shadow-lg rounded-3xl py-2 mt-3 px-3">
-								View Profile
-							</Link>
+				<div>
+					{openProfile ? (
+						<div className="absolute shadow shadow-gray-500  right-10 bg-gray-100 w-56 top-16 rounded-lg ">
+							<div className="flex flex-col items-center  py-2 border-b-2 border-gray-300 justify-center">
+								{user?.uid ? (
+									<>
+										{user.photoURL ? (
+											<img
+												className="w-10 h-10 rounded-full"
+												src={user?.photoURL}
+												alt=""
+											/>
+										) : (
+											<FaUserCheck
+												title="Image not found"
+												className="w-10 h-10 text-gray-500"
+											/>
+										)}
+									</>
+								) : (
+									<FaUserAlt className="w-7 h-7 text-gray-500" />
+								)}
+								<h1 className="font-bold pt-2">
+									{user?.uid ? user.displayName : "N/A"}
+								</h1>
+								<Link
+									to="/profile"
+									className="bg-fuchsia-400 hover:bg-fuchsia-500 font-semibold shadow-lg rounded-3xl py-2 mt-3 px-3">
+									View Profile
+								</Link>
+							</div>
+							<div className="p-3">
+								{" "}
+								{user?.uid ? (
+									<Link
+										onClick={logOut}
+										title="Logout"
+										className="flex items-center gap-1 font-bold">
+										<FiLogOut className="font-bold mt-1	text-lg" /> Logout
+									</Link>
+								) : (
+									<Link
+										to="signin"
+										title="Login"
+										className="flex items-center gap-1 font-bold">
+										<FiLogIn className="font-bold mt-1	text-lg" /> Login
+									</Link>
+								)}
+							</div>
 						</div>
-						<div>fjdfjskl</div>
-					</div>
-				) : undefined}
+					) : undefined}
+				</div>
 			</div>
 		</div>
 	);

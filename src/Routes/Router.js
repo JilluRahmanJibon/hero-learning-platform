@@ -9,6 +9,7 @@ import Login from "../Pages/Login/SignIn/SignIn";
 import SignUp from "../Pages/Login/Sign Up/SignUp";
 import TermsAndConditions from "../Pages/Login/Sign Up/TermsAndConditions/TermsAndConditions";
 import Profile from "../Pages/Profile/Profile";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
 	{
@@ -21,8 +22,15 @@ export const router = createBrowserRouter([
 			{ path: "/faqs", element: <FAQS /> },
 			{ path: "/blog", element: <Blog /> },
 			{ path: "/aboutUs", element: <About /> },
-			{ path: "profile", element: <Profile /> },
-			{ path: "signin", element: <Login /> },
+			{
+				path: "/profile",
+				element: (
+					<PrivateRouter>
+						<Profile />{" "}
+					</PrivateRouter>
+				),
+			},
+			{ path: "/signin", element: <Login /> },
 			{ path: "/signup", element: <SignUp /> },
 			{ path: "/terms", element: <TermsAndConditions /> },
 		],

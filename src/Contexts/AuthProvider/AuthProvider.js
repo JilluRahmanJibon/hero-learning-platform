@@ -9,6 +9,7 @@ import {
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
+	signOut,
 	updateProfile,
 } from "firebase/auth";
 import app from "../../firebase/Firebase.config";
@@ -50,7 +51,10 @@ const AuthProvider = ({ children }) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
-
+	// Log out
+	const userLogOut = () => {
+		return signOut(auth);
+	};
 	// user email varification
 	const userEmailVairy = () => {
 		sendEmailVerification(auth.currentUser)
@@ -74,6 +78,7 @@ const AuthProvider = ({ children }) => {
 		createUserWithEmailAndPass,
 		userProfileUpdate,
 		logInWithEmailAndPassword,
+		userLogOut,
 		userEmailVairy,
 		userPasswordReset,
 	};
