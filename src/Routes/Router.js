@@ -15,6 +15,7 @@ import Courses from "../Pages/Products/Courses/Courses";
 import Course from "../Pages/Products/Course/Course";
 import { async } from "@firebase/util";
 import CourseDetails from "../Pages/Products/CourseDetails/CourseDetails";
+import PremiumAccess from "../Pages/Products/PremiumAccess/PremiumAccess";
 
 export const router = createBrowserRouter([
 	{
@@ -31,13 +32,17 @@ export const router = createBrowserRouter([
 						path: "/courses/category/:id",
 						element: <Category />,
 						loader: async ({ params }) =>
-							fetch(`http://localhost:9000/category/${params.id}`),
+							fetch(
+								`https://aissignment-server.vercel.app/category/${params.id}`
+							),
 					},
 					{
 						path: "/courses/",
 						element: <Course />,
-						loader: async () => fetch("http://localhost:9000/course"),
+						loader: async () =>
+							fetch("https://aissignment-server.vercel.app/course"),
 					},
+
 					{
 						path: "/courses/courseDetails/:id",
 						element: (
@@ -46,9 +51,22 @@ export const router = createBrowserRouter([
 							</PrivateRouter>
 						),
 						loader: async ({ params }) =>
-							fetch(`http://localhost:9000/course/${params.id}`),
+							fetch(
+								`https://aissignment-server.vercel.app/course/${params.id}`
+							),
 					},
 				],
+			},
+			{
+				path: "/premiumAccess/:id",
+				element: (
+					<PrivateRouter>
+						{" "}
+						<PremiumAccess />
+					</PrivateRouter>
+				),
+				loader: async ({ params }) =>
+					fetch(`https://aissignment-server.vercel.app/course/${params.id}`),
 			},
 
 			{ path: "/faqs", element: <FAQS /> },

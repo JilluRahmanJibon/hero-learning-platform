@@ -111,7 +111,7 @@ const SignIn = () => {
 		userPasswordReset(userInfo.email)
 			.then(result => {
 				toast.success(
-					"Password reset successful , please check your email and new password set now",
+					"Reset your password , please check your email and set new password",
 					{
 						position: "top-center",
 						duration: 5000,

@@ -74,6 +74,18 @@ const AuthProvider = ({ children }) => {
 	const userPasswordReset = email => {
 		return sendPasswordResetEmail(auth, email);
 	};
+
+	// auth on state change ...  who is the login now log out now for checking
+	useEffect(() => {
+		const unSubscribes = onAuthStateChanged(auth, currentUser => {
+			setUser(currentUser);
+			setLoading(false);
+		});
+		return () => {
+			unSubscribes();
+		};
+	}, []);
+	//  auth info
 	const value = {
 		user,
 		loading,
@@ -87,17 +99,6 @@ const AuthProvider = ({ children }) => {
 		userEmailVairy,
 		userPasswordReset,
 	};
-
-	// auth on state change ...  who is the login now log out now for checking
-	useEffect(() => {
-		const unSubscribes = onAuthStateChanged(auth, currentUser => {
-			setUser(currentUser);
-			setLoading(false);
-		});
-		return () => {
-			unSubscribes();
-		};
-	}, []);
 	return (
 		<div>
 			{loading && (
