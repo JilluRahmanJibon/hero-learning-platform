@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import About from "../Pages/About/About";
 import Blog from "../Pages/Blog/Blog";
-import Courses from "../Pages/Courses/Courses";
+import Courses from "../Pages/Home/Courses/Courses";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import FAQS from "../Pages/FAQS/FAQS";
 import Root from "../Pages/Layout/Root";
@@ -10,6 +10,7 @@ import SignUp from "../Pages/Login/Sign Up/SignUp";
 import TermsAndConditions from "../Pages/Login/Sign Up/TermsAndConditions/TermsAndConditions";
 import Profile from "../Pages/Profile/Profile";
 import PrivateRouter from "./PrivateRouter";
+import Home from "../Pages/Home/Home/Home";
 
 export const router = createBrowserRouter([
 	{
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
 		element: <Root />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ path: "/", element: <Courses /> },
+			{ path: "/", element: <Home /> },
 			{ path: "/courses", element: <Courses /> },
 			{ path: "/faqs", element: <FAQS /> },
 			{ path: "/blog", element: <Blog /> },

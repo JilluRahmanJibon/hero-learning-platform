@@ -246,7 +246,7 @@ const Header = () => {
 				</div>
 				<div>
 					{openProfile ? (
-						<div className="absolute shadow shadow-gray-500  right-10 bg-gray-100 w-56 top-16 rounded-lg ">
+						<div className="absolute z-50 shadow shadow-gray-500  right-10 bg-gray-100 w-56 top-16 rounded-lg ">
 							<div className="flex flex-col items-center  py-2 border-b-2 border-gray-300 justify-center">
 								{user?.uid ? (
 									<>

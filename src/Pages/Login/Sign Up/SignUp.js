@@ -79,7 +79,6 @@ const SignUp = () => {
 					duration: 1000,
 					position: "top-center",
 				});
-				console.log(user);
 			})
 			.catch(error => {
 				setLoading(false);

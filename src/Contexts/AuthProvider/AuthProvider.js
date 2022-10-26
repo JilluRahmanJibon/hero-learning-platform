@@ -41,10 +41,14 @@ const AuthProvider = ({ children }) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 	// user profile update
-	const userProfileUpdate = name => {
+	const userProfileUpdate = (name, photoUrl) => {
 		updateProfile(auth.currentUser, {
 			displayName: name,
+			photoURL: photoUrl,
 		});
+		if (photoUrl) {
+			toast.success("profile update now");
+		}
 	};
 	// log in with email password
 	const logInWithEmailAndPassword = (email, password) => {
@@ -72,6 +76,7 @@ const AuthProvider = ({ children }) => {
 	};
 	const value = {
 		user,
+		loading,
 		setLoading,
 		continueWithGoogle,
 		continueWithGithub,
