@@ -252,19 +252,19 @@ const Header = () => {
 									<>
 										{user.photoURL ? (
 											<img
-												className="w-10 h-10 rounded-full"
+												className="w-20 h-20 rounded-full"
 												src={user?.photoURL}
 												alt=""
 											/>
 										) : (
 											<FaUserCheck
 												title="Image not found"
-												className="w-10 h-10 text-gray-500"
+												className="w-14 h-14 text-gray-500"
 											/>
 										)}
 									</>
 								) : (
-									<FaUserAlt className="w-7 h-7 text-gray-500" />
+									<FaUserAlt className="w-10 h-10 text-gray-500" />
 								)}
 								<h1 className="font-bold pt-2">
 									{user?.uid ? user.displayName : "N/A"}
