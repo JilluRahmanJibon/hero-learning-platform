@@ -14,6 +14,7 @@ import Category from "../Pages/Products/Category/Category";
 import Courses from "../Pages/Products/Courses/Courses";
 import Course from "../Pages/Products/Course/Course";
 import { async } from "@firebase/util";
+import CourseDetails from "../Pages/Products/CourseDetails/CourseDetails";
 
 export const router = createBrowserRouter([
 	{
@@ -36,6 +37,16 @@ export const router = createBrowserRouter([
 						path: "/courses/",
 						element: <Course />,
 						loader: async () => fetch("http://localhost:9000/course"),
+					},
+					{
+						path: "/courses/courseDetails/:id",
+						element: (
+							<PrivateRouter>
+								<CourseDetails />
+							</PrivateRouter>
+						),
+						loader: async ({ params }) =>
+							fetch(`http://localhost:9000/course/${params.id}`),
 					},
 				],
 			},

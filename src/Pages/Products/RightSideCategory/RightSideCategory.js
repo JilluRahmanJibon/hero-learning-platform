@@ -10,13 +10,15 @@ const RightSideCategory = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="text-gray-500">
 			<h1 className="text-xl font-bold ">All Categories </h1>
 			{categories.map(category => (
 				<div key={category.id}>
 					<NavLink
-						style={({ isActive }) => (isActive ? { color: "red" } : undefined)}
-						className="hover:text-red-400 block"
+						style={({ isActive }) =>
+							isActive ? { color: "white" } : undefined
+						}
+						className="hover:text-white block"
 						to={`/courses/category/${category.id}`}>
 						{category.name}
 					</NavLink>
@@ -25,7 +27,7 @@ const RightSideCategory = () => {
 			<NavLink
 				style={({ isActive }) => (isActive ? { color: " " } : { color: "red" })}
 				to="/courses/"
-				className="hover:text-red-400 block">
+				className="hover:text-white block">
 				All Category
 			</NavLink>
 		</div>
