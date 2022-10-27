@@ -13,7 +13,7 @@ In this website ReactJS-powered Tailwind Css are used.
 
 ## Description
 
-You can take fun quizes with your friends😁!!
+You can learn and take fun quizes with your friends😁!!
 Dev Goal: Learn everythings...
 
 ### Packages:
