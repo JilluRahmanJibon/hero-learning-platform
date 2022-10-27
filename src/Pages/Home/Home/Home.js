@@ -26,7 +26,7 @@ const Home = () => {
 									Learning Platform
 								</span>
 							</h2>
-							<p className="text-base text-gray-500 md:text-lg">
+							<p className="text-base  text-gray-500 md:text-lg">
 								Learn Effectively that will take you towards your goal. Complete
 								Web Development Course with{" "}
 								<a
@@ -47,14 +47,14 @@ const Home = () => {
 							<Link
 								title="Continue with our premium courses"
 								to="/courses"
-								className="inline-flex items-center justify-center w-full h-12 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded  shadow md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 hover:bg-gray-600 shadow-white focus:shadow-outline focus:outline-none">
+								className="inline-flex items-center justify-center w-full h-12 px-6 mb-3 font-medium tracking-wide bg-gray-800 text-white transition duration-200 rounded  shadow md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 hover:bg-gray-600 shadow-white focus:shadow-outline focus:outline-none">
 								Get started <FaArrowRight className="pt-1 pl-2 text-xl" />
 							</Link>
 							<Link
 								title="Learn more and details"
 								to="/blog"
 								aria-label=""
-								className="inline-flex items-center font-semibold text-gray-500  hover:text-gray-200 transition-colors duration-200 hover:text-deep-purple-accent-700">
+								className="inline-flex items-center font-semibold text-gray-500  hover:text-zinc-400 transition-colors duration-200 hover:text-deep-purple-accent-700">
 								Learn more
 							</Link>
 						</div>

@@ -86,30 +86,47 @@ const FAQS = () => {
 									</svg>
 									<span className="relative">The</span>
 								</span>{" "}
-								quick, brown fox jumps over a lazy dog
+								Here Are Some Faq's
 							</h2>
 							<p className="text-base text-gray-700 md:text-lg">
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-								accusantium doloremque rem aperiam, eaque ipsa quae.
+								You can give us your questions through newsletter.We will try to
+								answer.
 							</p>
 						</div>
 					</div>
-					<div className="space-y-4 text-gray-500">
-						<Item title="The quick, brown fox jumps over a lazy dog?">
-							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-							accusantium doloremque rem aperiam, eaque ipsa quae.
+					<div className="space-y-4 text-gray-400">
+						<Item title="What is cors?">
+							Cross-origin resource sharing is a mechanism that allows
+							restricted resources on a web page to be requested from another
+							domain outside the domain from which the first resource was
+							served. A web page may freely embed cross-origin images,
+							stylesheets, scripts, iframes, and videos.
 						</Item>
-						<Item title="The first mate and his Skipper too will do?">
-							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-							accusantium doloremque rem aperiam, eaque ipsa quae.
+						<Item title="Why are you using firebase?">
+							Firebase is great for quick projects: it's easy to set up, fast,
+							in many cases requires only front-end logic. It lets you focus on
+							your app instead of implementing custom authentication, web
+							sockets or database connections.
 						</Item>
-						<Item title="Is the Space Pope reptilian!?">
-							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-							accusantium doloremque rem aperiam, eaque ipsa quae.
+						<Item title="What other options do you have to implement authentication?">
+							Common Authentication Types a) Password-based authentication.
+							Passwords are the most common b)methods of authentication. ...
+							c)Multi-factor authentication. ... d)Certificate-based
+							authentication. ... e)Biometric authentication. ... f)Token-based
+							authentication.
 						</Item>
-						<Item title="How much money you got on you?">
-							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-							accusantium doloremque rem aperiam, eaque ipsa quae.
+						<Item title="What is Node? How does Node work?">
+							It is a used as backend service where javascript works on the
+							server-side of the application. This way javascript is used on
+							both frontend and backend. Node. js runs on chrome v8 engine which
+							converts javascript code into machine code, it is highly scalable,
+							lightweight, fast, and data-intensive.
+						</Item>
+						<Item title="How does the private route work?">
+							The react private route component renders child components (
+							children ) if the user is logged in. If not logged in the user is
+							redirected to the /login page with the return url passed in the
+							location state property.
 						</Item>
 					</div>
 				</div>

@@ -8,10 +8,13 @@ const PremiumAccess = () => {
 	const { cover, ratings, coursesName, priceAll } = useLoaderData();
 	const navigate = useNavigate();
 	const checkOut = () => {
-		toast.success("Welcome to our premium courses...We inform you thanks.", {
-			position: "top-center",
-			duration: 3000,
-		});
+		toast.success(
+			"Welcome to our premium courses...We will inform you thanks.",
+			{
+				position: "top-center",
+				duration: 3000,
+			}
+		);
 		navigate("/");
 	};
 	return (

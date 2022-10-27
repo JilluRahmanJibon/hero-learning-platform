@@ -6,7 +6,7 @@ const CourseSummaryCard = ({ courseSummay }) => {
 
 	return (
 		<div>
-			<div className="rounded-lg shadow-lg md:mt-0 mt-6 sm:mr-2 bg-white sm:max-w-lg max-w-md px-2 sm:px-0">
+			<div className="rounded-lg shadow-lg h-full md:mt-0 mt-6 sm:mr-2 bg-white sm:max-w-lg max-w-md px-2 sm:px-0">
 				<Link title="Click for details" to={`/courses/courseDetails/${id}`}>
 					<img
 						className="rounded-t-2xl sm:rounded-t-lg  sm:pt-0 pt-2 h-72 w-full"

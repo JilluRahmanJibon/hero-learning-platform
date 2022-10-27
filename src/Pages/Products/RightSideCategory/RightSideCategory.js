@@ -11,7 +11,7 @@ const RightSideCategory = () => {
 
 	return (
 		<div className="text-gray-500 lg:mb-0 lg:text-left text-center mb-8 lg:ml-0 ml-4">
-			<h1 className="text-xl font-bold ">All Categories </h1>
+			<h1 className="text-xl font-bold lg:pl-3 ">All Categories </h1>
 			{categories.map(category => (
 				<div key={category.id}>
 					<div className="flex lg:flex-none justify-center">

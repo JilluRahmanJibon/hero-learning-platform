@@ -71,10 +71,12 @@ const CourseDetails = () => {
 						</div>
 
 						<div className="p-6">
-							<h5 className="text-gray-900 text-xl font-medium mb-2">
+							<h5 className="text-gray-900 text-xl text-center font-medium mb-2">
 								{coursesName}
 							</h5>
-							<p className="text-gray-700 text-base mb-4">{details}</p>
+							<p className="text-gray-700 text-justify text-base mb-4">
+								{details}
+							</p>
 
 							<div className="flex sm:pt-3  pt-10 flex-col items-center">
 								<img

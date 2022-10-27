@@ -285,13 +285,12 @@ const Header = () => {
 							<div
 								onClick={() => {
 									setToggle(!toggle);
-								}}
-								className="p-3">
+								}}>
 								{toggle ? (
 									<button
 										onClick={() => setChangeTheme("bg-gray-900   ")}
 										title=" Dark Mode"
-										className="flex w-full items-center gap-1 font-bold">
+										className="flex  p-2 w-full items-center gap-1 font-bold">
 										{" "}
 										<MdDarkMode className="font-bold mt-1 dark:text-white text-lg" />{" "}
 										Dark Mode
@@ -300,14 +299,14 @@ const Header = () => {
 									<button
 										onClick={() => setChangeTheme("bg-gray-100 text-gray-900")}
 										title=" Light Mode"
-										className="flex w-full items-center gap-1 font-bold">
+										className="flex p-2 w-full items-center gap-1 font-bold">
 										{" "}
 										<CiDark className="font-bold mt-1 dark:text-white	text-lg" />{" "}
 										Light Mode
 									</button>
 								)}
 							</div>
-							<div className="p-3">
+							<div className="px-3 pb-3">
 								{" "}
 								{user?.uid ? (
 									<Link
