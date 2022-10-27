@@ -16,13 +16,15 @@ import app from "../../firebase/Firebase.config";
 import toast from "react-hot-toast";
 
 const auth = getAuth(app);
+
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 	// user state
 	const [user, setUser] = useState({});
 	// loading state
 	const [loading, setLoading] = useState(true);
-
+	// change Theme state
+	const [changeTheme, setChangeTheme] = useState(null);
 	// continue with Google
 	const googleProvider = new GoogleAuthProvider();
 	const continueWithGoogle = () => {
@@ -87,6 +89,8 @@ const AuthProvider = ({ children }) => {
 	}, []);
 	//  auth info
 	const value = {
+		changeTheme,
+		setChangeTheme,
 		user,
 		loading,
 		setLoading,
@@ -126,6 +130,7 @@ const AuthProvider = ({ children }) => {
 					</button>
 				</div>
 			)}
+
 			<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 		</div>
 	);

@@ -3,12 +3,19 @@ import toast from "react-hot-toast";
 import { FaBars, FaUserAlt, FaUserCheck } from "react-icons/fa";
 import { FcHome } from "react-icons/fc";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { MdDarkMode } from "react-icons/md";
+import { CiDark } from "react-icons/ci";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+
 const Header = () => {
 	const navigate = useNavigate();
-	const { user, userLogOut } = useContext(AuthContext);
+	const { user, userLogOut, changeTheme, setChangeTheme } =
+		useContext(AuthContext);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	// them state
+	const [toggle, setToggle] = useState(false);
+
 	// profile state
 	const [openProfile, setOpenProfile] = useState(false);
 	const profileRef = useRef();
@@ -39,11 +46,12 @@ const Header = () => {
 				// An error happened.
 			});
 	};
+
 	return (
-		<div className="bg-gray-900">
+		<div className={`bg-gray-900 border border-gray-500 ${changeTheme}`}>
 			<div
 				ref={profileRef}
-				className="px-2 py-5 relative  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+				className="px-2 py-5 relative shadow-xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
 				<div className="relative flex items-center justify-between">
 					<Link
 						to="/"
@@ -51,11 +59,13 @@ const Header = () => {
 						title="Home"
 						className="inline-flex items-center">
 						<FcHome className="md:text-3xl text-xl" />
-						<span className="ml-2 md:text-xl font-semibold md:font-bold tracking-wide text-gray-100 uppercase">
+						<span
+							className={`ml-2 md:text-xl font-semibold md:font-bold tracking-wide text-gray-100 uppercase $${changeTheme}`}>
 							Hero platform
 						</span>
 					</Link>
-					<ul className="flex items-center hidden space-x-8 lg:flex">
+					<ul
+						className={`flex items-center hidden space-x-8 lg:flex font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400${changeTheme}`}>
 						<li>
 							<NavLink
 								style={({ isActive }) =>
@@ -63,8 +73,7 @@ const Header = () => {
 								}
 								to="/courses"
 								aria-label="Our Courses"
-								title="Our Courses"
-								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
+								title="Our Courses">
 								Courses
 							</NavLink>
 						</li>
@@ -76,8 +85,7 @@ const Header = () => {
 								}
 								to="/faqs"
 								aria-label="FAQs"
-								title="FAQs"
-								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-deep-purple-accent-400">
+								title="FAQs">
 								FAQ
 							</NavLink>
 						</li>
@@ -88,8 +96,7 @@ const Header = () => {
 								}
 								to="/blog"
 								aria-label="Blog"
-								title="Blog"
-								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
+								title="Blog">
 								Blog
 							</NavLink>
 						</li>
@@ -100,8 +107,7 @@ const Header = () => {
 								}
 								to="aboutUs"
 								aria-label="About us"
-								title="About us"
-								className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
+								title="About us">
 								About us
 							</NavLink>
 						</li>
@@ -271,9 +277,35 @@ const Header = () => {
 								</h1>
 								<Link
 									to="/profile"
+									title="view profile"
 									className="bg-fuchsia-400 hover:bg-fuchsia-500 font-semibold shadow-lg rounded-3xl py-2 mt-3 px-3">
 									View Profile
 								</Link>
+							</div>
+							<div
+								onClick={() => {
+									setToggle(!toggle);
+								}}
+								className="p-3">
+								{toggle ? (
+									<button
+										onClick={() => setChangeTheme("bg-gray-900   ")}
+										title=" Dark Mode"
+										className="flex w-full items-center gap-1 font-bold">
+										{" "}
+										<MdDarkMode className="font-bold mt-1 dark:text-white text-lg" />{" "}
+										Dark Mode
+									</button>
+								) : (
+									<button
+										onClick={() => setChangeTheme("bg-gray-100 text-gray-900")}
+										title=" Light Mode"
+										className="flex w-full items-center gap-1 font-bold">
+										{" "}
+										<CiDark className="font-bold mt-1 dark:text-white	text-lg" />{" "}
+										Light Mode
+									</button>
+								)}
 							</div>
 							<div className="p-3">
 								{" "}

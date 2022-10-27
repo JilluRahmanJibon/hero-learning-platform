@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const PremiumAccess = () => {
+	const { changeTheme } = useContext(AuthContext);
 	const { cover, ratings, coursesName, priceAll } = useLoaderData();
 	const navigate = useNavigate();
 	const checkOut = () => {
-		toast.success(
-			"Welcome to our premium courses...আগে ৬০ মার্ক দেন তারপর access নেন ... Given by Hossain udoy",
-			{
-				position: "top-center",
-				duration: 3000,
-			}
-		);
+		toast.success("Welcome to our premium courses...We inform you thanks.", {
+			position: "top-center",
+			duration: 3000,
+		});
 		navigate("/");
 	};
 	return (
-		<div className="bg-gray-600 py-12">
+		<div className={`${changeTheme}   py-12 `}>
 			{" "}
 			<div className="w-full max-w-xl mx-auto  bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
 				<img src={cover} alt="" />

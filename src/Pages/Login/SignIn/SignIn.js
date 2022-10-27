@@ -135,13 +135,13 @@ const SignIn = () => {
 							<div className="flex flex-col md:flex-row gap-3">
 								<button
 									onClick={signInWithgoogle}
-									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
+									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-500 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
 									<FcGoogle className="text-xl lg:text-2xl" />{" "}
 									<span>Sign in with Google</span>
 								</button>{" "}
 								<button
 									onClick={signInWithGithub}
-									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
+									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-500 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
 									<FaGithub className="text-xl lg:text-2xl" /> Sign in with
 									Github
 								</button>

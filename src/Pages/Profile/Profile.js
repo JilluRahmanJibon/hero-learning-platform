@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Profile = () => {
-	const { user, userProfileUpdate } = useContext(AuthContext);
+	const { user, userProfileUpdate, changeTheme } = useContext(AuthContext);
 	const [checkbox, setCheckbox] = useState(true);
 	const [edit, setEdit] = useState(false);
 	// update user profile
@@ -16,7 +16,8 @@ const Profile = () => {
 		userProfileUpdate(name, photoUrl);
 	};
 	return (
-		<div className="lg:px-16 relative bg-gray-800 px-2 text-gray-300 py-3 lg:py-14">
+		<div
+			className={`lg:px-16 relative bg-gray-800 px-2 text-gray-500 py-3 lg:py-14 ${changeTheme}`}>
 			{" "}
 			<h1 className="text-3xl border-b text-center  border-gray-400 pb-3 font-bold">
 				My Proifle{" "}
@@ -58,13 +59,13 @@ const Profile = () => {
 			)}
 			<div className="  ">
 				{edit && (
-					<div className="  border p-6 rounded border-gray-600 bg-gray-800 md:w-3/4 lg:w-1/2 mx-auto md:bottom-6 bottom-0    ">
+					<div className="  border p-6 rounded border-gray-600  md:w-3/4 lg:w-1/2 mx-auto md:bottom-6 bottom-0    ">
 						<h1 className="text-xl pb-6 text-center font-bold">Edit Now</h1>
 						<form onSubmit={updateProfile}>
 							<div>
 								<label
 									htmlFor="Name"
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+									className="block mb-2 text-sm font-medium text-gray-500 dark:text-white">
 									Your Name
 								</label>
 								<input
@@ -73,14 +74,14 @@ const Profile = () => {
 									id="Name"
 									placeholder=""
 									defaultValue={user?.displayName}
-									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 font-semibold dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									required
 								/>
 							</div>
 							<div className="pt-5">
 								<label
 									htmlFor="photoUrl"
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+									className="block mb-2 text-sm font-medium  text-gray-500 dark:text-white">
 									Your photoURL
 								</label>
 								<input
@@ -90,7 +91,7 @@ const Profile = () => {
 									id="photoURL"
 									placeholder=""
 									defaultValue={user?.photoURL}
-									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+									className="bg-gray-50 border font-semibold border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									required
 								/>
 							</div>

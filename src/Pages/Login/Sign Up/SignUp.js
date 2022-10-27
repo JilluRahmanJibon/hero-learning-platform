@@ -22,6 +22,7 @@ const SignUp = () => {
 		fireError: "",
 	});
 	const {
+		changeTheme,
 		setLoading,
 		continueWithGoogle,
 		continueWithGithub,
@@ -111,9 +112,10 @@ const SignUp = () => {
 
 	return (
 		<div>
-			<section className="bg-gray-50 dark:bg-gray-900">
+			<section className={`bg-gray-900 ${changeTheme}`}>
 				<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-					<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+					<div
+						className={`w-full bg-white rounded-lg shadow-xl dark:border md:mt-0 sm:max-w-md xl:p-0   border-gray-700`}>
 						{errors.fireError && (
 							<p className=" text-center text-red-400">{errors.fireError}</p>
 						)}
@@ -124,13 +126,13 @@ const SignUp = () => {
 							<div className="flex flex-col md:flex-row gap-3">
 								<button
 									onClick={signUpWithGoogle}
-									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
+									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-500 border-gray-500 rounded-lg  hover:bg-gray-700 hover:text-white transition-all border">
 									<FcGoogle className="text-xl lg:text-2xl" />{" "}
 									<span>Sign up with Google</span>
 								</button>{" "}
 								<button
 									onClick={signUpWithGithub}
-									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-300 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
+									className=" w-full py-2 flex justify-center items-center gap-1 px-1 text-gray-500 border-gray-500 rounded-lg hover:bg-gray-700 hover:text-white transition-all border">
 									<FaGithub className="text-xl lg:text-2xl" /> Sign up with
 									Github
 								</button>

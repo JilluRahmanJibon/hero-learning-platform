@@ -13,7 +13,6 @@ import Home from "../Pages/Home/Home/Home";
 import Category from "../Pages/Products/Category/Category";
 import Courses from "../Pages/Products/Courses/Courses";
 import Course from "../Pages/Products/Course/Course";
-import { async } from "@firebase/util";
 import CourseDetails from "../Pages/Products/CourseDetails/CourseDetails";
 import PremiumAccess from "../Pages/Products/PremiumAccess/PremiumAccess";
 

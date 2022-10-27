@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Home = () => {
+	const { changeTheme } = useContext(AuthContext);
 	return (
-		<div>
-			<div className="relative bg-gray-800  flex flex-col py-16 lg:pt-0 lg:flex-col lg:pb-0">
+		<div className="">
+			<div
+				className={`relative  bg-gray-800 ${changeTheme} flex flex-col py-16 lg:pt-0 lg:flex-col lg:pb-0 `}>
 				<div className="flex flex-col items-start w-full max-w-xl px-4 mx-auto lg:px-8 lg:max-w-screen-xl">
 					<div className="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
 						<div className="max-w-xl mb-6">
 							<div>
-								<p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-200 uppercase rounded-full bg-teal-accent-400">
+								<p
+									className={`inline-block   text-slate-400 px-3 py-px mb-4 text-xs font-semibold tracking-wider   uppercase rounded-full bg-teal-accent-400`}>
 									New Colaboration
 								</p>
 							</div>
