@@ -70,9 +70,10 @@ const SignUp = () => {
 		e.preventDefault();
 		const form = e.target;
 		const name = form.name.value;
+		const photourl = form.photoUrl.value;
 		createUserWithEmailAndPass(userInfo.email, userInfo.password)
 			.then(result => {
-				userProfileUpdate(name);
+				userProfileUpdate(name, photourl);
 				userEmailVairy();
 				const user = result.user;
 				navigate(from, { replace: true });
@@ -156,6 +157,21 @@ const SignUp = () => {
 										id="name"
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder=" Your name"
+										required
+									/>
+								</div>
+								<div>
+									<label
+										htmlFor="photourl"
+										className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+										Your photoURL
+									</label>
+									<input
+										type="text"
+										name="photoUrl"
+										id="photourl"
+										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										placeholder=" Your photoUrl"
 										required
 									/>
 								</div>

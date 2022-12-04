@@ -4,7 +4,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const PremiumAccess = () => {
-	const { changeTheme } = useContext(AuthContext);
+	const { changeTheme, user } = useContext(AuthContext);
 	const { cover, ratings, coursesName, priceAll } = useLoaderData();
 	const navigate = useNavigate();
 	const checkOut = () => {
@@ -21,6 +21,22 @@ const PremiumAccess = () => {
 		<div className={`${changeTheme}   py-12 `}>
 			{" "}
 			<div className="w-full max-w-xl mx-auto  bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+				<div title="user info" className="flex justify-center flex-col pb-3">
+					<label
+						htmlFor="email"
+						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+						{user?.displayName}
+					</label>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						defaultValue={user?.email ? <>{user.email}</> : "no email found !"}
+						readOnly
+						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						required
+					/>
+				</div>
 				<img src={cover} alt="" />
 				<div className="px-5 pb-5">
 					<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">

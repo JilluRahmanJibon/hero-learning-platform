@@ -63,7 +63,7 @@ const Home = () => {
 				<div className="inset-y-0 right-0 w-full max-w-xl px-4 mx-auto py-10 lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
 					<img
 						className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none sm:h-96 lg:h-full"
-						src="https://i.ibb.co/Trz1z1w/home-page.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+						src="https://st2.depositphotos.com/1350793/8441/i/450/depositphotos_84415820-stock-photo-hand-drawing-online-courses-concept.jpg"
 						alt=""
 					/>
 				</div>
